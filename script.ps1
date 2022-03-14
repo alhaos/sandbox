@@ -15,7 +15,7 @@ $Connection = [SQLiteConnection]::new("Data Source=:memory:")
 try {
     $Connection.Open()
     $Command = $Connection.CreateCommand()
-    $Command.CommandText = [file]::ReadAllText($Global:conf.Queres.CreateTableWeekDa)
+    $Command.CommandText = [file]::ReadAllText($Global:conf.Queres.CreateTableWeekDay)
     $null = $Command.ExecuteNonQuery()
     $Command.Dispose()
 
@@ -35,14 +35,18 @@ try {
     $Command.Dispose()
 
     $Command = $Connection.CreateCommand()
-    
+    $Command.CommandText = [file]::ReadAllText($conf.Queres.SelectFromW)
+    $DataTable = [DataTable]::new()
+    $DataTable.Load($Command.ExecuteReader())
     $Command.Dispose()
 
-    $DataTable = [DataTable]::new()
-
+    for ($i = 0; $i -lt $DataTable.Rows.Count; $i++) {
+        if ($DataTable.Rows[$i]["id"] -in 0, 2,6) {
+            $DataTable.Rows.RemoveAt($i)
+            $i--
+        }
+    } 
     $DataTable
-
-
 }
 catch {
     throw $_
