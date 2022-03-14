@@ -1,1 +1,0 @@
-INSERT INTO week_day VALUES (@id, @name);

@@ -1,1 +1,0 @@
-select * from week_day;

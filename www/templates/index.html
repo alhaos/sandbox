@@ -1,0 +1,32 @@
+{{ define "index" }}
+{{ template "header" }}
+<h1>index text</h1>
+
+<p>Table with thead, tfoot, and tbody</p>
+<table>
+    <thead>
+    <tr>
+        <th>id</th>
+        <th>va</th>
+        <th>dt</th>
+    </tr>
+    </thead>
+    <tbody>
+    {{range .}}
+    <tr>
+        <td>{{ .Id }}</td>
+        <td>{{ .Va }}</td>
+        <td>{{ .Dt }}</td>
+    </tr>
+    {{end}}
+    </tbody>
+    <tfoot>
+    <tr>
+        <td>Footer content 1</td>
+        <td>Footer content 2</td>
+    </tr>
+    </tfoot>
+</table>
+
+{{ template "footer"}}
+{{ end }}

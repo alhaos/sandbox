@@ -1,0 +1,14 @@
+{{ define "create" }}
+{{ template "header" }}
+<h1>Форма добавления записи</h1>
+
+<form action="/save" method="post">
+
+<input type="text" name="id" id="id" placeholder="Idetity"><br>
+<input type="text" name="val" id="bal" placeholder="Value"><br>
+<input type="date" name="dt" id="dt" placeholder="Datetime"><br>
+<input type="submit">
+</form>
+
+{{ template "footer"}}
+{{ end }}
